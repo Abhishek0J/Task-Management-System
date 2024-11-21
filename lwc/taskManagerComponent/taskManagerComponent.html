@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Task Data Table" icon-name="standard:tasks">
+        <template if:true={data}>
+            <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error: {error.body.message}</p>
+        </template>
+    </lightning-card>
+</template>

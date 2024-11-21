@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Manage Tasks ">
+        <!-- Form to create a task -->
+        <div class="form-container">
+            <lightning-input label="Task Name" value={taskName} onchange={handleInput}></lightning-input>
+            <lightning-textarea  label="Description" value={description} onchange={handleInput}></lightning-textarea>
+            <lightning-input 
+                type="date" 
+                label="Due Date" 
+                value={dueDate} 
+                onchange={handleInput}
+                message-when-bad-input={dueDateError}>
+            </lightning-input>
+            <lightning-combobox label="Priority" value={priority} options={priorityOptions} onchange={handleInput}></lightning-combobox>
+            <lightning-combobox label="Status" value={status} options={statusOptions} onchange={handleInput}></lightning-combobox>
+            <lightning-button label="Create Task" onclick={createTask}></lightning-button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-container">
+            <lightning-combobox label="Filter by Priority" options={priorityOptions} onchange={filterTasks}></lightning-combobox>
+            <lightning-combobox label="Filter by Status" options={statusOptions} onchange={filterTasks}></lightning-combobox>
+        </div>
+
+        <!-- Task Data Table -->
+        <lightning-datatable
+            key-field="id"
+            data={tasks}
+            columns={columns}
+            onsave={updateTaskStatus}>
+        </lightning-datatable>
+    </lightning-card>
+</template>
